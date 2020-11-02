@@ -71,12 +71,10 @@ print(stu2.native_place)
 
 
 Student.method()
-#静态方法使用方式，无参数，
+#静态方法使用方式，无参数，使用类名直接访问
 
 Student.cm()
-#类方法使用方式，参数是class，直接调用
-
-
+#类方法使用方式，参数是class，使用类名直接访问
 
 
 6、错误和异常
