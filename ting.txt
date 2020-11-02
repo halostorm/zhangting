@@ -33,6 +33,7 @@ python安装
    while...else
    for...else
 4、函数
+
 5、类
 模板如下：
 class Student:
@@ -125,7 +126,7 @@ class Student(Person):
 
 class Teacher(Person):
     def __init__(self,name,age,year):
-        super().__init__(name,age)
+        super().__init__(name,age)    #注意__init__()为双下划线
         self.year = year
     def info(self):
         super().info()
@@ -136,6 +137,7 @@ stu.info()
 
 tea = Teacher('杜文',26,12)
 tea.info()
+
 
 多态：
 
