@@ -102,6 +102,44 @@ stu1.show()
    动态绑定方法
    """
 
+封装：
+  self.__age()  外部不让访问
+  print(dir(stu))   查询
+  print(stu._Student__age)  可强制访问
+  
+继承与重写：
+class Person(object):
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    def info(self):
+        print("the name is:",self.name,"the age is:",self.age)
+
+class Student(Person):
+    def __init__(self,name,age,id):
+        super().__init__(name,age)   #调用父类
+        self.id = id
+    def info(self):        #重写
+        super().info()     #父类有的
+        print(self.id)     #重写添加的
+
+class Teacher(Person):
+    def __init__(self,name,age,year):
+        super().__init__(name,age)
+        self.year = year
+    def info(self):
+        super().info()
+        print(self.year)
+
+stu = Student('张婷',28,10)
+stu.info()
+
+tea = Teacher('杜文',26,12)
+tea.info()
+
+多态：
+
+
 
 6、错误和异常
 7、模块
