@@ -34,6 +34,51 @@ python安装
    for...else
 4、函数
 5、类
+模板如下：
+class Student:
+    native_place = '吉林'  #类属性
+
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+
+    def eat(self):         #实例方法
+        print("{0}岁大的{1}在吃饭饭".format(self.age,self.name))
+
+    @staticmethod          #静态方法
+    def method():
+        print("你吃饭了吗")
+
+    @classmethod           #类方法
+    def cm(cls):
+        print("我吃饭了呀")
+
+stu1 = Student('张婷',28)
+stu2 = Student('杜文',26)
+print(stu1.eat())
+print(stu2.eat())
+#实例方法
+
+
+print(Student.native_place)
+print(stu1.native_place)
+print(stu2.native_place)
+
+Student.native_place = '河南'
+print(stu1.native_place)
+print(stu2.native_place)
+#访问类属性
+
+
+Student.method()
+#静态方法使用方式，无参数，
+
+Student.cm()
+#类方法使用方式，参数是class，直接调用
+
+
+
+
 6、错误和异常
 7、模块
 8、保存数据
