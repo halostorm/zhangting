@@ -55,6 +55,10 @@ class Student:
 
 stu1 = Student('张婷',28)
 stu2 = Student('杜文',26)
+stu1.gender = '女'   #动态绑定属性
+print(stu1.name,stu1.age,stu1.gender)
+print(stu2.name,stu2.age)
+
 print(stu1.eat())
 print(stu2.eat())
 #实例方法
@@ -75,6 +79,28 @@ Student.method()
 
 Student.cm()
 #类方法使用方式，参数是class，使用类名直接访问
+
+def show():
+    print("定义在类之外，称为函数")
+
+stu1.show = show   #动态绑定方法
+stu1.show()
+
+# stu2.show()  会报错，stu2并未绑定show方法，函数在绑定到对象之后就称为方法
+
+"""
+总结：
+1、面向过程、面向对象
+2、类对象class：
+   类属性(Student.native_place() 调用)
+   类方法(Student.cm() 调用)
+   实例方法(stu = Student(),    stu.eat() = Student.eat(stu) 调用)
+   静态方法(Student.method() 调用)
+3、实例对象
+   类名()
+   动态绑定属性
+   动态绑定方法
+   """
 
 
 6、错误和异常
