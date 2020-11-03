@@ -40,14 +40,14 @@ class Student:
     native_place = '吉林'  #类属性
 
     def __init__(self,name,age):
-        self.name = name
+        self.name = name   # 实例属性
         self.age = age
 
     def eat(self):         #实例方法
         print("{0}岁大的{1}在吃饭饭".format(self.age,self.name))
 
     @staticmethod          #静态方法
-    def method():
+    def sm():
         print("你吃饭了吗")
 
     @classmethod           #类方法
