@@ -32,6 +32,28 @@ python安装
    break/continue
    while...else
    for...else
+   
+   
+ bilibili:
+ 顺序结构
+ 选择结构：if
+ 循环结构：while  for...in
+ 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 4、函数
 
 5、类
