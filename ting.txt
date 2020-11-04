@@ -35,9 +35,159 @@ python安装
    
    
  bilibili:
- 顺序结构
- 选择结构：if
- 循环结构：while  for...in
+1、顺序结构：很好理解
+
+bool()很重要，所有的均要以此来判断
+
+2、选择结构:
+     单分支结构：
+         if  条件表达式：
+             条件执行语句1
+          
+     双分支结构：非a即b二选一
+         if  条件表达式：
+             条件执行语句1
+         else：
+             条件执行语句2
+ 
+     多分支结构：多分段区间
+         if  条件表达式：
+             条件执行语句1
+         elif：
+             条件执行语句2
+         elif：
+             条件执行语句N
+         else：
+             条件执行语句N+1
+
+     嵌套if：
+         if  条件表达式1：
+               if  内层条件表达式：
+                   内层条件执行体1
+               else：
+                   内层条件执行体2
+         else:
+             条件执行体
+        
+
+简写：
+x  if  条件判断  y
+例如：print((a,'大于等于',b) if a>=b else (a,'小于',b))
+条件判断布尔值是true  条件表达式返回值为x
+条件判断布尔值是false 条件表达式返回值为y
+
+
+pass语句：只是占位符，暂不执行
+
+
+
+
+ 3、循环结构:
+（1）range()函数    用print(list(range()))查看
+    range(5)        [0,1,2,3,4]
+    range(1,5)     [1,2,3,4]
+    range(1,6,2)  [1,3,5]
+    
+
+（2）while循环
+    
+   while  条件表达式：
+            条件执行体（循环体）
+
+while四步循环法：初始化变量、条件判断、条件执行体（循环体）、改变变量
+                             初始化变量=条件判断变量=改变变量（均是同一个）
+
+选择结构的if与循环结构的while区别：
+    if是判断一次，条件为True执行一行；
+    while是判断N+1次，条件为True执行N次。
+
+例子：
+#计算1到100之间的偶数之和
+sum = 0
+a = 1
+while a <= 100:
+    if not bool(a%2):    #或者直接if a%2==0:
+        sum+=a
+    a += 1
+print(sum)
+
+（3）for-in循环
+
+for 自定义变量 in 可迭代对象：
+     循环体
+
+
+in表达从（字符串、序列等）中依次取值，又称为遍历
+for-in遍历的对象必须是可迭代对象
+循环体内不需要访问自定义变量，可以将自定义变量代为下划线
+
+例子：
+水仙花数
+for a in range(100,1000):
+    x = a%10           #取余靠右
+    y = a//10%10    #取商靠左
+    z = a//100
+    if a==x**3 + y**3 + z**3:
+        print(z,y,x,"是水仙花数",a)
+
+（4）break、continue与else语句
+break：用于结束循环结构，达到想要目的，跳出整个循环，否则继续循环。
+continue：用于结束当前循环，进行下一次循环，通常与分支结构的if一起使用。
+例子：
+for a in range(1,51):
+    if a%5!=0:
+        continue
+    print(a)
+
+else：
+例子，主要是搭配未碰到break时的情况：
+for a in range(3):
+    pwd=input("请输入密码：")
+    if pwd=='8888':
+        print("密码正确")
+        break
+    else:
+        print("密码错误")
+else:
+    print("对不起，三次密码错误")
+
+或者：
+a=0
+while a<3:
+    pwd=input("请输入密码：")
+    if pwd=='8888':
+        print("密码正确")
+        break
+    else:
+        print("密码不正确")
+    a+=1
+else:
+    print("三次密码错误")
+
+（5）嵌套循环
+for i in range(1,10):
+    for j in range(1,i+1):
+        print(i,'*',j,'=',i*j,end='\t')
+    print()
+
+
+二重循环中的break和continue只用于控制本层循环
+
+for i in range(5):
+    for j in range(1,10):
+        if j%2==0:
+            break
+        print(j)
+
+
+for i in range(5):
+    for j in range(1,10):
+        if j%2==0:
+            continue
+        print(j,end='\t')
+    print()
+
+
  
    
    
