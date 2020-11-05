@@ -187,7 +187,317 @@ for i in range(5):
         print(j,end='\t')
     print()
 
+----------------------------------------------------------------------------------------------------------------------
+# coding: UTF-8
+# 开发人员: 张婷童鞋
+# 开发时间: 2020-11-05
+1、
+print('Albert Einstein once said, "A person who never made a mistake')
+print('never tried anything new."')    #单引号双引号
 
+2、
+name = "\tEric Matthes\n"    # \t空格，\n换行
+print("Unmodified:")
+print(name)
+print("\nUsing lstrip():")
+print(name.lstrip())
+print("\nUsing rstrip():")
+print(name.rstrip())
+print("\nUsing strip():")
+print(name.strip())
+lstrip()：用于截掉字符串左边的空格或指定字符
+rstrip()：删除 string 字符串末尾的指定字符（默认为空格）
+strip()：用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列。
+
+3、
+names = ['ron', 'tyler', 'dani']
+msg = "Hello, " + names[0].title() + "!"
+print(msg)
+
+4、
+Invite some people to dinner.
+guests = ['a', 'b', 'c']
+
+name = guests[1].title()
+print(name)
+
+del guests[1]         #等同于del (guest[1])
+guests.insert(1, 'd')
+
+name = guests[1].title()
+guests.append('e')
+print(guests)
+name = guests.pop(1)
+print(guests)
+print(name)
+主要了解这个 del()函数、insert()函数、append()函数、pop()函数
+insert() 函数用于将指定对象插入列表的指定位置
+list.insert(index, obj), index:对象obj需要插入的索引位置。obj:要插入列表中的对象。
+"""pop() 函数：
+list 中pop()用于移除列表中的一个元素（默认最后一个元素），并且返回该元素的值。
+       pop()方法语法：list.pop([index=-1]),如gusets.pop(1)
+dict 中pop()方法删除字典给定键 key 及对应的值，返回值为被删除的值。key 值必须给出，否则，返回default值。
+       pop()方法语法：pop(key[,default]) key: 要删除的键值，default: 如果没有 key，返回 default值，例如：
+       site= {'name': '菜鸟教程', 'alexa': 10000, 'url': 'www.runoob.com'}
+       pop_obj=site.pop('name')
+       print(site)        #{'alexa': 10000, 'url': 'www.runoob.com'}
+       print(pop_obj)    #菜鸟教程
+"""
+
+5、
+locations = ['himalaya', 'andes', 'tierra del fuego', 'labrador', 'guam']
+
+print(sorted(locations))   #按字母a-z顺序排序
+print(sorted(locations, reverse=True))  #按字母z-a顺序排序
+locations.reverse()
+print(locations)       #倒序排序
+
+locations.sort()          #等同于sorted(locations),表达方式不同但意思作用相同，按字母a-z
+print(locations)
+
+locations.sort(reverse=True) #等同于sorted(locations,revverse=True)，表达方式不同但意思作用相同，按字母z-a
+print(locations)
+
+6、
+a=[]
+[a.append(b) for b in range(1,10)]   #列表解析
+for b in a:
+    if b == 1:
+        print("1st")
+    elif b == 2:
+        print("2nd")
+    elif b == 3:
+        print("3rd")
+    else:
+        print(str(b) + "th")
+
+7、
+glossary = {
+    'string': 'A series of characters.',
+    'comment': 'A note in a program that the Python interpreter ignores.',
+    'list': 'A collection of items in a particular order.',
+    }
+
+a = ['string','comment']
+ for word,definition in glossary.items():
+     print(word.title() + ": " + definition)
+
+for word in glossary.keys():
+    print(word.title())
+    if word in a:
+        print(word.title(),':',glossary[word].title())   #for 循环的遍历步骤，if为true只执行一次即返回至for重新遍历
+
+8、
+rivers = {
+    'nile': 'egypt',
+    'mississippi': 'united states',
+    'fraser': 'canada',
+    'kuskokwim': 'alaska',
+    'yangtze': 'china',
+    }
+
+for river, country in rivers.items():
+    print("The " + river.title() + " flows through " + country.title() + ".")
+
+print("\nThe following rivers are included in this data set:")
+for river in rivers.keys():
+    print("- " + river.title())
+
+print("\nThe following countries are included in this data set:")
+for country in rivers.values():
+    print("- " + country.title())
+
+9、
+# Make an empty list to store people in.
+people = []
+
+# Define some people, and add them to the list.
+person = {
+    'first_name': 'eric',
+    'last_name': 'matthes',
+    'age': 43,
+    'city': 'sitka',
+}
+people.append(person)
+
+person = {
+    'first_name': 'ever',
+    'last_name': 'matthes',
+    'age': 5,
+    'city': 'sitka',
+}
+people.append(person)
+
+person = {
+    'first_name': 'willie',
+    'last_name': 'matthes',
+    'age': 8,
+    'city': 'sitka',
+}
+people.append(person)
+
+# Display all of the information in the dictionary.
+for person in people:
+    name = person['first_name'].title() + " " + person['last_name'].title()
+    age = str(person['age'])
+    city = person['city'].title()
+
+    print(name + ", of " + city + ", is " + age + " years old.")
+
+10、
+Make an empty list to store the pets in.
+pets = []
+
+Make individual pets, and store each one in the list.
+pet = {
+    'animal type': 'python',
+    'name': 'john',
+    'owner': 'guido',
+    'weight': 43,
+    'eats': 'bugs',
+}
+pets.append(pet)
+
+pet = {
+    'animal type': 'chicken',
+    'name': 'clarence',
+    'owner': 'tiffany',
+    'weight': 2,
+    'eats': 'seeds',
+}
+pets.append(pet)
+
+pet = {
+    'animal type': 'dog',
+    'name': 'peso',
+    'owner': 'eric',
+    'weight': 37,
+    'eats': 'shoes',
+}
+pets.append(pet)
+
+# Display information about each pet.
+for pet in pets:
+    print("\nHere's what I know about " + pet['name'].title() + ":")
+    for key, value in pet.items():
+        print("\t" + key + ": " + str(value))
+
+11、
+favorite_places = {
+    'eric': ['bear mountain', 'death valley', 'tierra del fuego'],
+    'erin': ['hawaii', 'iceland'],
+    'ever': ['mt. verstovia', 'the playground', 'south carolina']
+    }
+for name,places in favorite_places.items():
+    print(name.title()+"'s favorite places are:")
+    for place in places:
+        print("- ",place)               #items()函数默认返回name（单个key）,places（单个places的列表）的列表形式
+
+12、
+cities = {
+    'santiago': {
+        'country': 'chile',
+        'population': 6158080,
+        'nearby mountains': 'andes',
+        },
+    'talkeetna': {
+        'country': 'alaska',
+        'population': 876,
+        'nearby mountains': 'alaska range',
+        },
+    'kathmandu': {
+        'country': 'nepal',
+        'population': 1003285,
+        'nearby mountains': 'himilaya',
+        }
+    }
+
+for city, city_info in cities.items():
+    country = city_info['country'].title()
+    population = city_info['population']
+    mountains = city_info['nearby mountains'].title()
+
+    print("\n" + city.title() + " is in " + country + ".")
+    print("  It has a population of about " + str(population) + ".")
+    print("  The " + mountains + " mountains are nearby.")   #字典中套字典,不可单纯像列表一样遍历,因为其有键值对,非单个元素
+
+13、
+cities = {
+    'a':{'x':'1','y':2,'z':'3',},
+    'b':{'x':'4','y':5,'z':'6',},
+    'c':{'x':'7','y':8,'z':'9'}
+          }
+for name,infos in cities.items():
+    print(name.title())
+    x=infos['x']
+    y=infos['y']
+    z=infos['z']
+    print(name.title()+"'s information is"+x+str(y)+z)
+
+14、
+prompt = "\nWhat topping would you like on your pizza?"
+prompt += "\nEnter 'quit' when you are finished: "
+
+while True:
+    topping = input(prompt)
+    if topping != 'quit':
+        print("  I'll add " + topping + " to your pizza.")
+    else:
+        break                 #while True 会不断循环执行,故要有跳出机制,如break
+
+15、
+sandwich_orders = ['veggie', 'grilled cheese', 'turkey', 'roast beef']
+finished_sandwiches = []
+
+while sandwich_orders:
+    current_sandwich = sandwich_orders.pop()
+    print("I'm working on your " + current_sandwich + " sandwich.")
+    finished_sandwiches.append(current_sandwich)
+
+print("\n")
+for sandwich in finished_sandwiches:
+    print("I made a " + sandwich + " sandwich.")
+
+16、
+sandwich_orders = [
+    'pastrami', 'veggie', 'grilled cheese', 'pastrami',
+    'turkey', 'roast beef', 'pastrami']
+finished_sandwiches = []
+
+print("I'm sorry, we're all out of pastrami today.")
+while 'pastrami' in sandwich_orders:
+    sandwich_orders.remove('pastrami')
+
+print("\n")
+while sandwich_orders:
+    current_sandwich = sandwich_orders.pop()
+    print("I'm working on your " + current_sandwich + " sandwich.")
+    finished_sandwiches.append(current_sandwich)
+
+print("\n")
+for sandwich in finished_sandwiches:
+    print("I made a " + sandwich + " sandwich.")
+
+17、
+name_prompt = "\nname? "
+place_prompt = "place? "
+continue_prompt = "\n (yes/no) "
+responses = {}
+
+while True:
+    name = input(name_prompt)
+    place = input(place_prompt)
+    responses[name] = place
+
+    repeat = input(continue_prompt)
+    if repeat != 'yes':
+        break
+
+print("\n--- Results ---")
+for name, place in responses.items():
+    print(name.title() + " would like to visit " + place.title() + ".")
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
  
    
    
