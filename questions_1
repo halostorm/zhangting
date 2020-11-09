@@ -1,5 +1,4 @@
-下述代码有部分不懂：
-
+# 1、父类：
 class User():
     """Represent a simple user profile."""
 
@@ -31,7 +30,7 @@ class User():
         """Reset login_attempts to 0."""
         self.login_attempts = 0
 
-
+# 2、子类：
 class Admin(User):
     """A user with administrative privileges."""
 
@@ -42,6 +41,9 @@ class Admin(User):
         # Initialize an empty set of privileges.
         self.privileges = Privileges()            #再初始化子类特有属性（初始化一个privileges空集合）， #子类继承父类的时候，Privileges()是干什么的，怎么又多出来一个Privileges类
 
+# 3、新类：   
+（这个新类是从大型类拆分出来多个协同工作的小类之一，它没有任何继承类，子类中的self.privileges = Privileges()即为运行代码让python创建一个新的Privileges实例，并将该实例存储在
+属性self.privileges中，每当方法__init__()被调用时，都将执行该操作，因此每个Admin实例都包含一个自动创建的Privileges实例）
 class Privileges():
     """A class to store an admin's privileges."""
 
@@ -68,5 +70,5 @@ eric_privileges = [
     'can moderate discussions',
     'can suspend accounts',
     ]
-eric.privileges.privileges = eric_privileges        #没看太懂        
+eric.privileges.privileges = eric_privileges            
 eric.privileges.show_privileges()
