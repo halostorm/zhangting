@@ -10,7 +10,7 @@ class User():
         self.username = username
         self.email = email
         self.location = location.title()
-        self.login_attempts = 0              #这种初始化的属性还有默认值还是没太明白什么作用，和上面self.email之类的有何区别？
+        self.login_attempts = 0              
 
     def describe_user(self):
         """Display a summary of the user's information."""
@@ -37,10 +37,10 @@ class Admin(User):
 
     def __init__(self, first_name, last_name, username, email, location):
         """Initialize the admin."""
-        super().__init__(first_name, last_name, username, email, location)
+        super().__init__(first_name, last_name, username, email, location)          #初始化父类属性
 
         # Initialize an empty set of privileges.
-        self.privileges = Privileges()                  
+        self.privileges = Privileges()            #再初始化子类特有属性（初始化一个privileges空集合）， #子类继承父类的时候，Privileges()是干什么的，怎么又多出来一个Privileges类
 
 class Privileges():
     """A class to store an admin's privileges."""
@@ -60,7 +60,7 @@ class Privileges():
 eric = Admin('eric', 'matthes', 'e_matthes', 'e_matthes@example.com', 'alaska')
 eric.describe_user()
 
-eric.privileges.show_privileges()         #子类继承父类的时候，Privileges()是干什么的，怎么又多出来一个Privileges类
+eric.privileges.show_privileges()        
 
 print("\nAdding privileges...")
 eric_privileges = [
@@ -68,5 +68,5 @@ eric_privileges = [
     'can moderate discussions',
     'can suspend accounts',
     ]
-eric.privileges.privileges = eric_privileges               
+eric.privileges.privileges = eric_privileges        #没看太懂        
 eric.privileges.show_privileges()
