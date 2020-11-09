@@ -1,9 +1,9 @@
 python 学习路径
-1、预备
+一、预备
 python安装
 集成开发环境
 
-2、基本数据类型
+二、基本数据类型
 数和四则运算
 除法
 常用数学函数和运算优先级
@@ -13,28 +13,8 @@ python安装
 字典
 集合
 
-3、语句和文件
-运算符
-  算术/比较/逻辑（布尔）运算符
-语句1
-   print/import/赋值语句
- 语句2
-   if
-   if/else/elif
-   三元操作
- 语句3
-   for循环/range
- 语句4
-   并行迭代
-   enumerate
-   list解析
- 语句5
-   break/continue
-   while...else
-   for...else
-   
-   
- bilibili:
+三、语句和文件
+
 1、顺序结构：很好理解
 
 bool()很重要，所有的均要以此来判断
@@ -78,8 +58,6 @@ x  if  条件判断  y
 
 
 pass语句：只是占位符，暂不执行
-
-
 
 
  3、循环结构:
@@ -187,7 +165,237 @@ for i in range(5):
         print(j,end='\t')
     print()
 
+
+四、函数
+
+五、类
+模板如下：
+class Student:
+    native_place = '吉林'  #类属性
+
+    def __init__(self,name,age):
+        self.name = name   # 实例属性
+        self.age = age
+
+    def eat(self):         #实例方法
+        print("{0}岁大的{1}在吃饭饭".format(self.age,self.name))
+
+    @staticmethod          #静态方法
+    def sm():
+        print("你吃饭了吗")
+
+    @classmethod           #类方法
+    def cm(cls):
+        print("我吃饭了呀")
+
+stu1 = Student('张婷',28)
+stu2 = Student('杜文',26)
+stu1.gender = '女'   #动态绑定属性
+print(stu1.name,stu1.age,stu1.gender)
+print(stu2.name,stu2.age)
+
+print(stu1.eat())
+print(stu2.eat())
+#实例方法
+
+
+print(Student.native_place)
+print(stu1.native_place)
+print(stu2.native_place)
+
+Student.native_place = '河南'
+print(stu1.native_place)
+print(stu2.native_place)
+#访问类属性
+
+
+Student.method()
+#静态方法使用方式，无参数，使用类名直接访问
+
+Student.cm()
+#类方法使用方式，参数是class，使用类名直接访问
+
+def show():
+    print("定义在类之外，称为函数")
+
+stu1.show = show   #动态绑定方法
+stu1.show()
+
+# stu2.show()  会报错，stu2并未绑定show方法，函数在绑定到对象之后就称为方法
+
+"""
+总结：
+1、面向过程、面向对象
+2、类对象class：
+   类属性(Student.native_place() 调用)
+   类方法(Student.cm() 调用)
+   实例方法(stu = Student(),    stu.eat() = Student.eat(stu) 调用)
+   静态方法(Student.method() 调用)
+3、实例对象
+   类名()
+   动态绑定属性
+   动态绑定方法
+   """
+
+封装：
+  self.__age()  外部不让访问
+  print(dir(stu))   查询
+  print(stu._Student__age)  可强制访问
+  
+继承与重写：
+class Person(object):
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    def info(self):
+        print("the name is:",self.name,"the age is:",self.age)
+
+class Student(Person):
+    def __init__(self,name,age,id):
+        super().__init__(name,age)   #调用父类
+        self.id = id
+    def info(self):        #重写
+        super().info()     #父类有的
+        print(self.id)     #重写添加的
+
+class Teacher(Person):
+    def __init__(self,name,age,year):
+        super().__init__(name,age)    #注意__init__()为双下划线
+        self.year = year
+    def info(self):
+        super().info()
+        print(self.year)
+
+stu = Student('张婷',28,10)
+stu.info()
+
+tea = Teacher('杜文',26,12)
+tea.info()
+
+
+多态：
+
+
+
+六、错误和异常
+七、模块
+模块与包：
+  模块：
+     ~避免函数名/变量名重名
+     ~自定义模块：一个.py文件成为一个模块
+     ~第三方模块：
+         安装：pip install 模块名
+         使用：from...import 模块名
+   包：
+     ~避免模块名重名
+     ~包含__init__.py文件
+
+以主程序运行：if __name__ = '__ main__':    #只有在主程序中才会执行，调用不执行
+
+八、保存数据
+
+
+九、一个录入数据系统的实战
+filename = 'student.txt'
+
+def main():
+    while True:
+        menu()
+        choice = int(input('请选择：'))
+        if choice in [0,1,2,3,4,5,6,7]:
+            if choice == 0:
+                answer = input('您确定要退出系统吗？y/n')
+                if answer == 'y' or answer == 'Y':
+                    print("谢谢您的使用！！！")
+                    break   #退出系统
+                else:
+                    continue
+            elif choice == 1:
+                insert()  #录入
+            elif choice == 2:
+                search()  #查找
+            elif choice == 3:
+                delete()  #删除
+            elif choice == 4:
+                modify()  #修改
+            elif choice == 5:
+                sort()    #排序
+            elif choice == 6:
+                total()   #统计
+            elif choice == 7:
+                show()    #显示
+
+def menu():
+    print("==========================学生信息管理系统=============================")
+    print("|---------------------------->功能菜单<-------------------------------|")
+    print("|                           1.录入学生信息                            |")
+    print("|                           2.查找学生信息                            |")
+    print("|                           3.删除学生信息                            |")
+    print("|                           4.修改学生信息                            |")
+    print("|                           5.学生信息排序                            |")
+    print("|                           6.统计学生总数                            |")
+    print("|                           7.显示所有信息                            |")
+    print("|                           0.退出信息系统                            |")
+    print("|--------------------------------------------------------------------|")
+
+def insert():
+    student_lst = []
+    while True:
+        id = input('请输入ID(如1009):')
+        if not id:
+            break
+        name = input('请输入姓名(如张三):')
+        if not name:
+            break
+
+        try:
+            englist = int(input('请输入英语成绩:'))
+            python = int(input('请输入python成绩:'))
+            java = int(input('请输入java成绩:'))
+        except:
+            print("输入无效，不是整数类型，请重新输入:")
+            continue
+        # 将录入的学生信息保存到字典当中
+        student = {'id':id,'name':name,'english':englist,'python':python,'java':java}
+        # 将录入的学生信息添加到列表中
+        student_lst.append(student)
+        answer = input('你是否继续添加？y/n\n')
+        if answer=='y':
+            continue
+        else:
+            break
+
+    #调用save()函数
+    save(student_lst)
+    print("学生信息录入完毕！")
+
+def save(lst):
+    try:
+        stu_txt = open(filename,'a',encoding='utf-8')    #a为追加模式
+    except:
+        stu_txt = open(filename,'w',encoding='utf-8')
+    for item in lst:
+        stu_txt.write(str(item)+'\n')
+        stu_txt.close()
+
+
+def search():
+    pass
+def delete():
+    pass
+def modify():
+    pass
+def sort():
+    pass
+def total():
+    pass
+def show():
+    pass
+
+if __name__ == '__main__':
+    main()
 ----------------------------------------------------------------------------------------------------------------------
+各个章节实战训练题目：
 # coding: UTF-8
 # 开发人员: 张婷童鞋
 # 开发时间: 2020-11-05
@@ -711,8 +919,6 @@ eric.privileges.privileges = eric_privileges
 eric.privileges.show_privileges()
 
 
-
-
 -------
 22、
 filename = '1\copy_python.txt'    #相对路径
@@ -857,231 +1063,4 @@ except FileNotFoundError:
    
    
    
-4、函数
 
-5、类
-模板如下：
-class Student:
-    native_place = '吉林'  #类属性
-
-    def __init__(self,name,age):
-        self.name = name   # 实例属性
-        self.age = age
-
-    def eat(self):         #实例方法
-        print("{0}岁大的{1}在吃饭饭".format(self.age,self.name))
-
-    @staticmethod          #静态方法
-    def sm():
-        print("你吃饭了吗")
-
-    @classmethod           #类方法
-    def cm(cls):
-        print("我吃饭了呀")
-
-stu1 = Student('张婷',28)
-stu2 = Student('杜文',26)
-stu1.gender = '女'   #动态绑定属性
-print(stu1.name,stu1.age,stu1.gender)
-print(stu2.name,stu2.age)
-
-print(stu1.eat())
-print(stu2.eat())
-#实例方法
-
-
-print(Student.native_place)
-print(stu1.native_place)
-print(stu2.native_place)
-
-Student.native_place = '河南'
-print(stu1.native_place)
-print(stu2.native_place)
-#访问类属性
-
-
-Student.method()
-#静态方法使用方式，无参数，使用类名直接访问
-
-Student.cm()
-#类方法使用方式，参数是class，使用类名直接访问
-
-def show():
-    print("定义在类之外，称为函数")
-
-stu1.show = show   #动态绑定方法
-stu1.show()
-
-# stu2.show()  会报错，stu2并未绑定show方法，函数在绑定到对象之后就称为方法
-
-"""
-总结：
-1、面向过程、面向对象
-2、类对象class：
-   类属性(Student.native_place() 调用)
-   类方法(Student.cm() 调用)
-   实例方法(stu = Student(),    stu.eat() = Student.eat(stu) 调用)
-   静态方法(Student.method() 调用)
-3、实例对象
-   类名()
-   动态绑定属性
-   动态绑定方法
-   """
-
-封装：
-  self.__age()  外部不让访问
-  print(dir(stu))   查询
-  print(stu._Student__age)  可强制访问
-  
-继承与重写：
-class Person(object):
-    def __init__(self,name,age):
-        self.name = name
-        self.age = age
-    def info(self):
-        print("the name is:",self.name,"the age is:",self.age)
-
-class Student(Person):
-    def __init__(self,name,age,id):
-        super().__init__(name,age)   #调用父类
-        self.id = id
-    def info(self):        #重写
-        super().info()     #父类有的
-        print(self.id)     #重写添加的
-
-class Teacher(Person):
-    def __init__(self,name,age,year):
-        super().__init__(name,age)    #注意__init__()为双下划线
-        self.year = year
-    def info(self):
-        super().info()
-        print(self.year)
-
-stu = Student('张婷',28,10)
-stu.info()
-
-tea = Teacher('杜文',26,12)
-tea.info()
-
-
-多态：
-
-
-
-6、错误和异常
-7、模块
-模块与包：
-  模块：
-     ~避免函数名/变量名重名
-     ~自定义模块：一个.py文件成为一个模块
-     ~第三方模块：
-         安装：pip install 模块名
-         使用：from...import 模块名
-   包：
-     ~避免模块名重名
-     ~包含__init__.py文件
-
-以主程序运行：if __name__ = '__ main__':    #只有在主程序中才会执行，调用不执行
-
-8、保存数据
-
-
-9、实战
-filename = 'student.txt'
-
-def main():
-    while True:
-        menu()
-        choice = int(input('请选择：'))
-        if choice in [0,1,2,3,4,5,6,7]:
-            if choice == 0:
-                answer = input('您确定要退出系统吗？y/n')
-                if answer == 'y' or answer == 'Y':
-                    print("谢谢您的使用！！！")
-                    break   #退出系统
-                else:
-                    continue
-            elif choice == 1:
-                insert()  #录入
-            elif choice == 2:
-                search()  #查找
-            elif choice == 3:
-                delete()  #删除
-            elif choice == 4:
-                modify()  #修改
-            elif choice == 5:
-                sort()    #排序
-            elif choice == 6:
-                total()   #统计
-            elif choice == 7:
-                show()    #显示
-
-def menu():
-    print("==========================学生信息管理系统=============================")
-    print("|---------------------------->功能菜单<-------------------------------|")
-    print("|                           1.录入学生信息                            |")
-    print("|                           2.查找学生信息                            |")
-    print("|                           3.删除学生信息                            |")
-    print("|                           4.修改学生信息                            |")
-    print("|                           5.学生信息排序                            |")
-    print("|                           6.统计学生总数                            |")
-    print("|                           7.显示所有信息                            |")
-    print("|                           0.退出信息系统                            |")
-    print("|--------------------------------------------------------------------|")
-
-def insert():
-    student_lst = []
-    while True:
-        id = input('请输入ID(如1009):')
-        if not id:
-            break
-        name = input('请输入姓名(如张三):')
-        if not name:
-            break
-
-        try:
-            englist = int(input('请输入英语成绩:'))
-            python = int(input('请输入python成绩:'))
-            java = int(input('请输入java成绩:'))
-        except:
-            print("输入无效，不是整数类型，请重新输入:")
-            continue
-        # 将录入的学生信息保存到字典当中
-        student = {'id':id,'name':name,'english':englist,'python':python,'java':java}
-        # 将录入的学生信息添加到列表中
-        student_lst.append(student)
-        answer = input('你是否继续添加？y/n\n')
-        if answer=='y':
-            continue
-        else:
-            break
-
-    #调用save()函数
-    save(student_lst)
-    print("学生信息录入完毕！")
-
-def save(lst):
-    try:
-        stu_txt = open(filename,'a',encoding='utf-8')    #a为追加模式
-    except:
-        stu_txt = open(filename,'w',encoding='utf-8')
-    for item in lst:
-        stu_txt.write(str(item)+'\n')
-        stu_txt.close()
-
-
-def search():
-    pass
-def delete():
-    pass
-def modify():
-    pass
-def sort():
-    pass
-def total():
-    pass
-def show():
-    pass
-
-if __name__ == '__main__':
-    main()
