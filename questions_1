@@ -40,7 +40,7 @@ class Admin(User):
         super().__init__(first_name, last_name, username, email, location)
 
         # Initialize an empty set of privileges.
-        self.privileges = Privileges()                  #同questions_1，也是继承的类中引用其他类，是多类继承？还是只是继承类中其中一个属性需要引用其他类中的内容？？
+        self.privileges = Privileges()                  
 
 class Privileges():
     """A class to store an admin's privileges."""
