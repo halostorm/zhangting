@@ -72,7 +72,7 @@ class ElectricCar(Car):
         Then initialize attributes specific to an electric car.
         """
         super().__init__(manufacturer, model, year)
-        self.battery = Battery()
+        self.battery = Battery()            同questions_1，也是继承类中引用其他类，是多类继承？还是只是继承类中其中一个属性需要引用其他类中的内容？？
 
 
 print("Make an electric car, and check the battery:")
