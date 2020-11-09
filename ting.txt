@@ -637,6 +637,83 @@ c.talk()
 
 
 
+class User():
+    """Represent a simple user profile."""
+
+    def __init__(self, first_name, last_name, username, email, location):
+        """Initialize the user."""
+        self.first_name = first_name.title()
+        self.last_name = last_name.title()
+        self.username = username
+        self.email = email
+        self.location = location.title()
+        self.login_attempts = 0
+
+    def describe_user(self):
+        """Display a summary of the user's information."""
+        print("\n" + self.first_name + " " + self.last_name)
+        print("  Username: " + self.username)
+        print("  Email: " + self.email)
+        print("  Location: " + self.location)
+
+    def greet_user(self):
+        """Display a personalized greeting to the user."""
+        print("\nWelcome back, " + self.username + "!")
+
+    def increment_login_attempts(self):
+        """Increment the value of login_attempts."""
+        self.login_attempts += 1
+
+    def reset_login_attempts(self):
+        """Reset login_attempts to 0."""
+        self.login_attempts = 0
+
+
+class Admin(User):
+    """A user with administrative privileges."""
+
+    def __init__(self, first_name, last_name, username, email, location):
+        """Initialize the admin."""
+        super().__init__(first_name, last_name, username, email, location)
+
+        # Initialize an empty set of privileges.
+        self.privileges = Privileges()
+
+class Privileges():
+    """A class to store an admin's privileges."""
+
+    def __init__(self, privileges=[]):
+        self.privileges = privileges
+
+    def show_privileges(self):
+        print("\nPrivileges:")
+        if self.privileges:
+            for privilege in self.privileges:
+                print("- " + privilege)
+        else:
+            print("- This user has no privileges.")
+
+
+eric = Admin('eric', 'matthes', 'e_matthes', 'e_matthes@example.com', 'alaska')
+eric.describe_user()
+
+
+eric.privileges.show_privileges()
+
+
+print("\nAdding privileges...")
+eric_privileges = [
+    'can reset passwords',
+    'can moderate discussions',
+    'can suspend accounts',
+    ]
+eric.privileges.privileges = eric_privileges
+eric.privileges.show_privileges()
+
+
+
+
+-------
 22、
 filename = '1\copy_python.txt'    #相对路径
 
@@ -658,8 +735,14 @@ for line in lines:
     print(line.rstrip())
 
 或者
-with open(r'D:\python\python crash course\venv\2.txt','r',encoding='UTF-8') as f:
+filename=(r'D:\python\python crash course\venv\2.txt')
+print(filename)         #假如文件里有中文，需要在filename后面添加encoding='UTF-8'
+with open(filename) as f:
     contents = f.read()
+print(contents)
+
+with open(r'D:\python\python crash course\venv\2.txt','w',encoding='UTF-8') as f:
+    contents = f.write('hahahahahah')
 print(contents)
 
 23、
@@ -692,8 +775,79 @@ for line in lines:
     pl_string+=line.lstrip()     #删除字符串左边的空格或指定字符
 print(pl_string)
 
-25
+25、
+filename=('1/pi.txt')
+with open(filename,'w') as f:
+    f.write('hahahahhahha.\n')
+    f.write('hihihihihihi.\n')   #写入，后面若print打印的话只能打印写入字符是几个，若为r模式，则print可读取内容
 
+with open(filename,'a') as f:
+    f.write('9999999.\n')
+    f.write('10000000.\n')         #追加
+
+26、
+filename = 'guest_book.txt'
+
+print("Enter 'quit' when you are finished.")
+while True:
+    name = input("\nWhat's your name? ")
+    if name == 'quit':
+        break
+    else:
+        with open(filename, 'a') as f:
+            f.write(name + "\n")
+        print("Hi " + name + ", you've been added to the guest book.")
+
+27、
+filename = 'programming_poll.txt'
+
+responses = []
+while True:
+    response = input("\nWhy do you like programming? ")
+    responses.append(response)
+
+    continue_poll = input("Would you like to let someone else respond? (y/n) ")
+    if continue_poll != 'y':
+        break
+
+with open(filename, 'a') as f:
+    for response in responses:
+        f.write(response + "\n")
+
+28、异常(ZeroDivisionError、FileNotFoundError、)
+try:
+    print(5/0)
+except ZeroDivisionError:
+    print("you can't divide by zero!")
+
+29、
+print("please give two numbers,and enter 'q' to exist!")
+while True:
+    num1=input("please enter the first number:")
+    if num1=='q':
+        break
+    num2 = input("please enter the second number:")
+    if num2=='q':
+        break
+    try:
+        answer=int(num1)/int(num2)
+    except ZeroDivisionError:
+        print("the second can't be zero!")
+    else:
+        print("the result is:",answer)
+
+30、
+try:
+    with open(filename) as f:
+        contents=f.readlines()
+    print(contents)     #.readlines()，若直接打印，则只能打印文件内容以列表形式存储的内容，若为.read()则原文打印
+    for content in contents:   #这个遍历主要原因是把readlines()读取的列表形式以字符形式连接
+        a=content.strip()
+        print(a)
+except FileNotFoundError:
+    msg="sorry, the file:"+filename+" is not exist!"
+    print(msg)
+    
 ---------------------------------------------------------------------------------------------------------------------------------------  
    
    
