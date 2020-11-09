@@ -71,4 +71,4 @@ eric_privileges = [
     'can suspend accounts',
     ]
 eric.privileges.privileges = eric_privileges            
-eric.privileges.show_privileges()
+eric.privileges.show_privileges()        #这行代码让python在实例eric中查找属性privileges，并对存储在该属性中的Privileges() 实例调用方法show_privileges().
