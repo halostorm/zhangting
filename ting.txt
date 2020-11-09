@@ -1054,6 +1054,167 @@ except FileNotFoundError:
     msg="sorry, the file:"+filename+" is not exist!"
     print(msg)
     
+31、
+filename=('dvwa.txt')
+
+try:
+    with open(filename,encoding='utf-8') as f:
+        contents=f.read()
+except FileNotFoundError:
+    msg="Sorry,the file: "+filename+" doesn't exist"
+    print(msg)
+else:
+    words=contents.split()
+    num_words=len(words)
+    print("The file "+filename+" has "+str(num_words)+" words.")
+    注：+是字符串拼接，一方面注意空格，另一方面注意其他数据类型要转化成字符串才可拼接
+
+32、
+def count_words(filename):
+    """计算一个文件共包含多少个单词"""
+    try:
+        with open(filename,encoding='utf-8') as f:
+            contents=f.read()
+    except FileNotFoundError:
+        msg="Sorry,the file: "+filename+" doesn't exist"
+        print(msg)
+    else:
+        words=contents.split()
+        num_words=len(words)
+        print("The file "+filename+" has "+str(num_words)+" words.")
+
+filename='dvwa.txt'
+count_words(filename)
+
+33、
+def count_words(filename):
+    """计算一个文件共包含多少个单词"""
+    try:
+        with open(filename,encoding='utf-8') as f:
+            contents=f.read()
+    except FileNotFoundError:
+        pass              #这个就是所谓的报错即跳过，一声不吭，只打印存所存在文件的单词数
+    else:
+        words=contents.split()
+        num_words=len(words)
+        print("The file "+filename+" has "+str(num_words)+" words.")
+filenames=['1.txt','2.txt','dvwa.txt','3.txt','guest_book.txt']
+for filename in filenames:
+    count_words(filename)
+
+34、
+print("请输入两个数字")
+
+try:
+    num_1=input("please enter the first number:")
+    num_1=int(num_1)
+    num_2=input("please enter the second number:")
+    num_2=int(num_2)
+
+except ValueError:
+    print("please enter again,both num_1 and num_2 can't be string!")
+
+else:
+    count = num_1 + num_2
+    print(count)
+
+try:
+    x = input("Give me a number: ")
+    x = int(x)
+
+    y = input("Give me another number: ")
+    y = int(y)
+
+except ValueError:
+    print("Sorry, I really needed a number.")
+
+else:
+    sum = x + y
+    print("The sum of " + str(x) + " and " + str(y) + " is " + str(sum) + ".")
+
+35、
+print("Enter 'q' at any time to quit.\n")
+
+while True:               # while True 符合即循环
+    try:
+        x = input("\nGive me a number: ")
+        if x == 'q':
+            break
+        x = int(x)
+
+        y = input("Give me another number: ")
+        if y == 'q':
+            break
+        y = int(y)
+
+    except ValueError:
+        print("Sorry, I really needed a number.")
+
+    else:
+        sum = x + y
+        print("The sum of " + str(x) + " and " + str(y) + " is " + str(sum) + ".")
+
+36、
+filenames = ['cats.txt', 'dogs.txt']
+
+for filename in filenames:           # 循环均在里面，单独的输出整个流程，再循环
+    print("\nReading file: " + filename)
+    try:
+        with open(filename) as f:
+            contents = f.read()
+            print(contents)
+    except FileNotFoundError:
+        print("  Sorry, I can't find that file.")
+
+37、
+filenames = ['cats.txt', 'dogs.txt']
+
+for filename in filenames:
+
+    try:
+        with open(filename) as f:
+            contents = f.read()
+
+    except FileNotFoundError:
+        pass
+
+    else:
+        print("\nReading file: " + filename)
+        print(contents)
+
+38、
+import json
+numbers=[2,3,4,5,6,7,8,9]
+filename='numbers.json'
+with open(filename,'w') as f:
+    json.dump(numbers,f)     #json.dump(存储数据名，存储数据的文件对象)
+
+39、
+import json
+filename='numbers.json'
+with open(filename) as f:
+    numbers=json.load(f)    #使用json.load()加载存储在numbers.json中的信息，并将其存储在变量numbers中
+print(numbers)
+
+40、
+import json
+filename='username.json'
+try:
+    with open(filename) as f:
+        username=json.load(f)
+    print(username)
+except FileNotFoundError:
+    username=input("what's your name?")
+    with open(filename,'w') as f:
+        json.dump(username,f)
+        print("we will remember you when you come back," + username +"!")
+else:
+    print("welcome back," + username +"!")
+
+若文件存在，则将其中的用户名读取到内存中，再执行else代码打印欢迎用户回来的信息。
+若文件不存在，将引发FileNotFoundError，则执行except代码块，提示用户输入用户名，再使用json.dump()存储该用户名并打印问候语。
+
+41、
 ---------------------------------------------------------------------------------------------------------------------------------------  
    
    
