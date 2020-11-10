@@ -1215,6 +1215,58 @@ else:
 若文件不存在，将引发FileNotFoundError，则执行except代码块，提示用户输入用户名，再使用json.dump()存储该用户名并打印问候语。
 
 41、
+import json
+
+try:
+    with open('favorite_number.json') as f:
+        number = json.load(f)          #try这块主要是打开文件，文件存在与否未知，故try
+
+except FileNotFoundError:
+    number = input("What's your favorite number? ")
+    with open('favorite_number.json', 'w') as f:
+        json.dump(number, f)
+    print("Thanks, I'll remember that.")    #except error这块主要是文件不存在的补救措施：创建存储input数据对象
+
+else:
+    print("I know your favorite number! It's " + str(number) + ".")  #如果存在该文件，连接try这块，打印number
+
+42、重构：让代码更清晰、更易于理解、更容易扩展
+import json
+
+def get_stored_username():
+    """Get stored username if available."""
+    filename = 'username.json'
+    try:
+        with open(filename) as f_obj:
+            username = json.load(f_obj)
+    except FileNotFoundError:
+        return None           #文件不存在，返回空
+    else:
+        return username       #文件存在，返回文件内容，可能为空
+
+def get_new_username():  #输入新用户名字
+    """Prompt for a new username."""
+    username = input("What is your name? ")
+    filename = 'username.json'
+    with open(filename, 'w') as f_obj:
+        json.dump(username, f_obj)
+    return username
+
+def greet_user():        #根据不同的用户名字来打招呼
+    """Greet the user by name."""
+    username = get_stored_username()  #get_stored_username返回的要不是空，要不是文件内容
+    if username:        #文件username内容不为空
+        correct = input("Are you " + username + "? (y/n) ")
+        if correct == 'y':       #如果你是对应用户名则打招呼
+            print("Welcome back, " + username + "!")
+        else:                    #如果你不是对应用户名则输入新用户名并打招呼
+            username = get_new_username()
+            print("We'll remember you when you come back, " + username + "!")
+    else:               #文件username内容为空，则直接调用get_new_username添加新用户，并打招呼
+        username = get_new_username()
+        print("We'll remember you when you come back, " + username + "!")
+
+greet_user()
 ---------------------------------------------------------------------------------------------------------------------------------------  
    
    
